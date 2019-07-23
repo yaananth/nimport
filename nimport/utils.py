@@ -5,7 +5,7 @@ import json
 import os
 import subprocess
 import shutil
-
+import sys
 
 def open_nb(path, params=None, redirect=True):
     '''
@@ -21,8 +21,7 @@ def open_nb(path, params=None, redirect=True):
         pc = parameter_cells[0] if parameter_cells else None
         if pc:
             # overwrite cell contents, write notebook
-            lines = [k + '=' + json.dumps(v) for k, v in params.items()]
-            pc['source'] = '\n'.join(lines)
+            pc['source'] = dump_params(params)
             nbformat.write(nb, path)
 
     # redirect
@@ -44,6 +43,8 @@ def clone_repo(git_url):
     cmd = 'git clone --depth=1 ' + git_url
     assert 0 == subprocess.check_output(cmd, shell=True)
     assert os.path.isdir(dirname)
+    if dirname not in sys.path:
+        sys.path.append(dirname)
     return os.path.abspath(dirname)
 
 def parse_params(url):
@@ -57,3 +58,7 @@ def parse_params(url):
         rc = dict(parse.parse_qsl(components.query))
         rc['url'] = components.scheme + "://" + components.netloc + components.path
     return rc
+
+def dump_params(params):
+    lines = [k + ' = ' + json.dumps(v) for k, v in params.items()]
+    return '\n'.join(lines)
