@@ -9,7 +9,7 @@
 `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 
 ## use
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.3`
+`pip install --index-url https://test.pypi.org/simple/ nimport==0.4`
 
 # Resources
 - https://packaging.python.org/guides/using-testpypi/

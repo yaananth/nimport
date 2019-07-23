@@ -3,7 +3,6 @@ from github import Github
 import requests
 from IPython.display import display
 from nimport.lib.parser import Parser
-from rauth import OAuth2Service
 import json
 
 _Token = "token"
