@@ -38,7 +38,7 @@ class Nimportmagic(Magics, Configurable):
         provider = self._providers[providerName]
         if provider:
             fileContents = provider.getFile(
-                results[Tokens.Container], results[Tokens.Path])
+                results[Tokens.Container], results[Tokens.Path], results[Tokens.ProviderOptions])
             display(fileContents)
             self.waitForParams()
         else:

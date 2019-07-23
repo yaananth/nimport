@@ -1,4 +1,5 @@
 from nimport.lib.tokens import Tokens
+import json
 
 
 class Parser(object):
@@ -20,6 +21,10 @@ class Parser(object):
             elif option.__contains__(Tokens.ProviderToken):
                 result[Tokens.Provider] = self.normalize(option.replace(
                     Tokens.ProviderToken, ""))
+
+            elif option.__contains__(Tokens.ProviderOptions):
+                result[Tokens.ProviderOptions] = json.loads(option.replace(
+                    Tokens.ProviderOptionsToken, ""))
         return result
 
     @classmethod

@@ -5,10 +5,11 @@
 `python setup.py sdist`
 
 ## publish
+`pip install twine`
 `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 
 ## use
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.2`
+`pip install --index-url https://test.pypi.org/simple/ nimport==0.3`
 
 # Resources
 - https://packaging.python.org/guides/using-testpypi/
