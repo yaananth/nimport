@@ -9,7 +9,13 @@
 `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 
 ## Use
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.2`
+```
+!pip install PyGithub
+!pip install websocket-client
+!pip install nbformat
+```
+
+`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.4`
 
 ## Examples
 - Get a file from public repo and navigate to that file

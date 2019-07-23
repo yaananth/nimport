@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
 NAME = "nimport"
-VERSION = '0.9.2'
+VERSION = '0.9.4'
 
 setup(
     name=NAME,
     version=VERSION,
-    packages=find_packages(),
-    install_requires=["PyGithub", "websocket-client", "nbformat"]
+    packages=find_packages()
+    #install_requires=["PyGithub", "websocket-client", "nbformat"]
 )

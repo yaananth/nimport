@@ -4,7 +4,7 @@ import json
 import os
 
 
-def open_nb(path, params=None):
+def open_nb(path, params=None, redirect=False):
     '''edit papermill parameters and redirect to new notebook in same project'''
     assert os.path.isfile(path)
     assert path.endswith('.ipynb')
@@ -21,6 +21,7 @@ def open_nb(path, params=None):
             nbf.write(nb, path)
 
     # redirect
-    js = '''var o = window.location.href.split("/"); o[o.length - 1] = "''' + \
-        path + '''"; window.location = o.join("/");'''
-    display(Javascript(js))
+    if redirect:
+        js = '''var o = window.location.href.split("/"); o[o.length - 1] = "''' + \
+            path + '''"; window.location = o.join("/");'''
+        display(Javascript(js))
