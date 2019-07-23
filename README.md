@@ -26,7 +26,14 @@
 
     Needs `git` to be accessible
     ```
-    %nimport container="yaananth/hack-sample-note2" path="one.ipynb" provider="github" providerOptions={"clone":"true"} navigate="trueOrAnythingHere"
+    %nimport container="yaananth/pipeline-delays" path="delays.ipynb" provider="github" providerOptions={"clone":"true"}
+    ```
+
+- Parameterize notebook from URL    
+    ```
+    from nimport.utils import open_nb, load_params
+    params = load_params(currentUrl)
+    open_nb("pipeline-delays/delays.ipynb", params, redirect=True)
     ```
 
 ## Develop
