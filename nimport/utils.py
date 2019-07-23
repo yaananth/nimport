@@ -31,17 +31,19 @@ def open_nb(path, params=None, redirect=True):
             path + '''"; window.location = o.join("/");'''
         display(Javascript(js))
 
-def clone_repo(git_url):
+def clone_repo(repo):
     '''
     clone a git repo, cleaning previous install
     '''
-    assert git_url.endswith('.git')
+    if not repo:
+        return
+    assert repo.endswith('.git')
     import shutil
-    dirname = git_url.split('/')[-1].split('.')[0]
+    dirname = repo.split('/')[-1].split('.')[0]
     if os.path.isdir(dirname):
         shutil.rmtree(dirname)
-    cmd = 'git clone --depth=1 ' + git_url
-    assert 0 == subprocess.check_output(cmd, shell=True)
+    cmd = 'git clone --depth=1 ' + repo
+    subprocess.call(cmd, shell=True)
     assert os.path.isdir(dirname)
     if dirname not in sys.path:
         sys.path.append(dirname)
