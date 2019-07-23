@@ -5,19 +5,18 @@
 `python setup.py sdist`
 
 ## Publish
-`pip install twine`
-`twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
-
+```
+pip install twine
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+```
 ## Use
 ```
 !pip install PyGithub
 !pip install websocket-client
 !pip install nbformat
+!pip install --index-url https://test.pypi.org/simple/ nimport==0.9.6
+%load_ext nimport
 ```
-
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.6`
-
-`%load_ext nimport`
 
 ## Examples
 - Get a file from public repo and navigate to that file
