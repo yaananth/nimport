@@ -2,12 +2,17 @@ from setuptools import setup, find_packages
 
 NAME = "nimport"
 VERSION = '0.4'
-with open('requirements.txt') as f:
-    requires = f.read().splitlines()
-    
+
+INSTALL_REQUIRES = [
+    'PyGithub',
+    'websocket-client',
+    'IPython',
+    'nbformat',
+]
+
 setup(
     name=NAME,
     version=VERSION,
-    packages=find_packages(),
-    install_requires=requires
+    install_requires=INSTALL_REQUIRES,
+    packages=find_packages()
 )

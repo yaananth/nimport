@@ -1,4 +1,4 @@
-from nimport.lib.tokens import Tokens
+from .tokens import Tokens
 import json
 
 

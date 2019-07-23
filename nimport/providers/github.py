@@ -1,8 +1,8 @@
-from nimport.providers.provider import Provider
+from .provider import Provider
+from ..lib.parser import Parser
 from github import Github
 import requests
 from IPython.display import display
-from nimport.lib.parser import Parser
 import json
 
 _Token = "token"
