@@ -1,6 +1,7 @@
 # nimport
 
 ## package
+`pip install -r requirements.txt`
 `python setup.py sdist`
 
 ## publish
@@ -13,3 +14,4 @@
 - https://packaging.python.org/guides/using-testpypi/
 - https://libraries.io/pypi/twine
 - https://test.pypi.org/manage/projects/
+- https://pygithub.readthedocs.io/en/latest/introduction.html
