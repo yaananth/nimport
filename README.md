@@ -5,7 +5,8 @@
 !pip install PyGithub
 !pip install websocket-client
 !pip install nbformat
-!pip install --index-url https://test.pypi.org/simple/ nimport==0.10
+!pip install --index-url https://test.pypi.org/simple/ nimport==0.10 OR
+!pip install nimport
 %load_ext nimport
 ```
 
