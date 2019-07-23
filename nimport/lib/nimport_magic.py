@@ -40,6 +40,7 @@ class Nimportmagic(Magics, Configurable):
 
     @line_magic(Constants.MAGIC_NAME)
     def run(self, line):
+        display(line)
         results = Parser.parse(line)
         providerName = results[Tokens.Provider]
         provider = self._providers[providerName]
@@ -101,14 +102,7 @@ class Nimportmagic(Magics, Configurable):
     def getJSPostContent(cls, url):
         js = """
         if (window) {
-            if (!window.__nimport) {
-                window.__nimport = {};
-            }
-
-            if(!window.__nimport.redirect) {
-                window.__nimport.redirect = true;
-                window.location.href = "%s"
-            }  
+            window.location.href = "%s"
         }
         """ % (url)
         return js
