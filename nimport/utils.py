@@ -2,6 +2,7 @@ from IPython.display import display, Javascript
 import nbformat as nbf
 import json
 import os
+from urllib import parse
 
 
 def open_nb(path, params=None, redirect=False):
@@ -25,3 +26,16 @@ def open_nb(path, params=None, redirect=False):
         js = '''var o = window.location.href.split("/"); o[o.length - 1] = "''' + \
             path + '''"; window.location = o.join("/");'''
         display(Javascript(js))
+
+
+def load_params(url):
+    '''
+    azure notebooks does not allow access to URL parameters.
+    this is a cheap function to parse them when provided manually.
+    '''
+    rc = {}
+    if url:
+        components = parse.urlsplit(url)
+        rc = dict(parse.parse_qsl(components.query))
+        rc['url'] = components.scheme + "://" + components.netloc + components.path
+    return rc
