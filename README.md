@@ -15,7 +15,7 @@
 !pip install nbformat
 ```
 
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.5`
+`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.6`
 
 `%load_ext nimport`
 

@@ -22,9 +22,12 @@ class Parser(object):
                 result[Tokens.Provider] = self.normalize(option.replace(
                     Tokens.ProviderToken, ""))
 
-            elif option.__contains__(Tokens.ProviderOptions):
+            elif option.__contains__(Tokens.ProviderOptionsToken):
                 result[Tokens.ProviderOptions] = json.loads(option.replace(
                     Tokens.ProviderOptionsToken, ""))
+            elif option.__contains__(Tokens.NavigateToken):
+                result[Tokens.Navigate] = json.loads(option.replace(
+                    Tokens.NavigateToken, ""))
         return result
 
     @classmethod
