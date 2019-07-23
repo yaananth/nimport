@@ -7,6 +7,7 @@ import subprocess
 import shutil
 import sys
 
+
 def open_nb(path, params=None, redirect=True):
     '''
     edit papermill parameters and redirect to new notebook in same project
@@ -26,10 +27,15 @@ def open_nb(path, params=None, redirect=True):
 
     # redirect
     if redirect:
-        # this sends a blob of javascript to be executed in the nteract window
-        js = '''var o = window.location.href.split("/"); o[o.length - 1] = "''' + \
-            path + '''"; window.location = o.join("/");'''
-        display(Javascript(js))
+        redirectTo(path)
+
+
+def redirectTo(path):
+    # this sends a blob of javascript to be executed in the nteract window
+    js = '''var o = window.location.href.split("/"); o[o.length - 1] = "''' + \
+        path + '''"; window.location = o.join("/");'''
+    display(Javascript(js))
+
 
 def clone_repo(repo):
     '''
@@ -49,6 +55,7 @@ def clone_repo(repo):
         sys.path.append(dirname)
     return os.path.abspath(dirname)
 
+
 def parse_params(url):
     '''
     azure notebooks does not allow access to URL parameters.
@@ -58,8 +65,10 @@ def parse_params(url):
     if url:
         components = parse.urlsplit(url)
         rc = dict(parse.parse_qsl(components.query))
-        rc['url'] = components.scheme + "://" + components.netloc + components.path
+        rc['url'] = components.scheme + "://" + \
+            components.netloc + components.path
     return rc
+
 
 def dump_params(params):
     lines = [k + ' = ' + json.dumps(v) for k, v in params.items()]
