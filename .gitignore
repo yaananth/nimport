@@ -2,3 +2,4 @@ build
 bin
 dist
 *.egg-info
+*.pyc

@@ -1,7 +1,7 @@
-from nimport.lib.nimport_magic import Nimportmagic as Magic
-
-# https://ipython.readthedocs.io/en/stable/config/extensions/
-
+'''
+https://ipython.readthedocs.io/en/stable/config/extensions/
+'''
+from .lib.nimport_magic import Nimportmagic as Magic
 
 def load_ipython_extension(ip):
     ip.register_magics(Magic)

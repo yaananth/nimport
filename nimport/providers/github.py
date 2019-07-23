@@ -1,10 +1,7 @@
-from nimport.providers.provider import Provider
-from nimport.providers.constants import Constants
-
+from .provider import Provider
+from .constants import Contants
 from github import Github
 import requests
-from IPython.display import display
-from nimport.lib.parser import Parser
 import json
 import sys
 import os
@@ -14,9 +11,10 @@ class GithubProvider(Provider):
     def clone(self, container: str, path: str, options: dict):
         rmFolder = "rm -rf " + self.getContainerName(container)
         command = "git clone --depth=1 https://github.com/" + container + ".git"
-        display(rmFolder)
-        display(command)
+        print(rmFolder)
         os.system(rmFolder)
+        
+        print(command)
         os.system(command)
         return ""
 
