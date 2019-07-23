@@ -3,6 +3,7 @@ class Tokens(object):
     Path = "path"
     Provider = "provider"
     ProviderOptions = "providerOptions"
+    Navigate = "navigate"
 
     Equals = "="
 
@@ -10,3 +11,4 @@ class Tokens(object):
     PathToken = Path + Equals
     ProviderToken = Provider + Equals
     ProviderOptionsToken = ProviderOptions + Equals
+    NavigateToken = Navigate + Equals
