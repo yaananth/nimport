@@ -1,15 +1,38 @@
-# nimport
+# Nimport
 
-## package
+## Package
 `pip install -r requirements.txt`
 `python setup.py sdist`
 
-## publish
+## Publish
 `pip install twine`
 `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 
-## use
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.4`
+## Use
+`pip install --index-url https://test.pypi.org/simple/ nimport==0.9`
+
+## Examples
+- Get a file from public repo and navigate to that file
+    ```
+    %nimport container="yaananth/hack-sample-note2" path="one.ipynb" provider="github" providerOptions={} navigate="trueOrAnythingHere"
+    ```
+
+- Get a file from public repo and display a link to that file
+    ```
+    %nimport container="yaananth/hack-sample-note2" path="one.ipynb" provider="github" providerOptions={}
+    ```
+
+- Get a file from private repo and navigate to that file
+    ```
+    %nimport container="yaananth/hack-sample-note2" path="one.ipynb" provider="github" providerOptions={{"token":"PATTOKENHERE"}} navigate="trueOrAnythingHere"
+    ```
+
+- Clone a public repo and navigate to the boot strap file
+
+    Needs `git` to be accessible
+    ```
+    %nimport container="yaananth/hack-sample-note2" path="one.ipynb" provider="github" providerOptions={{"clone":"true"}} navigate="trueOrAnythingHere"
+```
 
 # Resources
 - https://packaging.python.org/guides/using-testpypi/

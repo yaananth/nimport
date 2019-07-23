@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 NAME = "nimport"
-VERSION = '0.4'
+VERSION = '0.9.2'
 
 setup(
     name=NAME,
