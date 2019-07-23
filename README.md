@@ -2,7 +2,7 @@
 
 ## Use
 ```
-!pip install nimport
+!pip install --upgrade nimport
 %load_ext nimport
 ```
 
