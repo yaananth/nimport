@@ -1,5 +1,6 @@
 from .provider import Provider
 from .constants import Constants
+from ..lib.parser import Parser
 from github import Github
 import requests
 import json
