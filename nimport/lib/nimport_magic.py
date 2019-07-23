@@ -53,6 +53,7 @@ class Nimportmagic(Magics, Configurable):
 
     @classmethod
     def waitForParams(cls, inputs, provider):
+        display("Trying to get the current link...")
         url = _WS_BaseUrl.format(cls.getRoomId())
         ws = websocket.create_connection(
             url, sslopt={"cert_reqs": ssl.CERT_NONE})
@@ -64,6 +65,7 @@ class Nimportmagic(Magics, Configurable):
 
     @classmethod
     def postContent(cls, inputs, provider):
+        display("Got link...making final adjustments")
         content = cls._result[_Result_Content]
         url = cls._result[_Result_Url]
         newNoteBookName = inputs[Tokens.Path]
@@ -76,7 +78,6 @@ class Nimportmagic(Magics, Configurable):
         if content:
             write(content, newNoteBookName)
         newUrl = notebookUrl.getNewLink(newNoteBookName)
-        display(newNoteBookName)
         if Tokens.Navigate in inputs:
             display(Javascript(cls.getJSPostContent(newUrl)))
         else:

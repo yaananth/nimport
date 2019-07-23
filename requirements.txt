@@ -1,2 +1,3 @@
 PyGithub
 websocket-client
+nbformat

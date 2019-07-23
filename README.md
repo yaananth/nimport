@@ -9,7 +9,7 @@
 `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 
 ## Use
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.9`
+`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.2`
 
 ## Examples
 - Get a file from public repo and navigate to that file
