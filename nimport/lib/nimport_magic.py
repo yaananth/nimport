@@ -90,7 +90,6 @@ class Nimportmagic(Magics, Configurable):
         var websocket = new WebSocket("%s");
 
         websocket.onopen = function (event) {
-            window.history.back();
             websocket.send(JSON.stringify({
                 url: window.location.href
             }));

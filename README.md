@@ -15,7 +15,9 @@
 !pip install nbformat
 ```
 
-`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.4`
+`pip install --index-url https://test.pypi.org/simple/ nimport==0.9.5`
+
+`%load_ext nimport`
 
 ## Examples
 - Get a file from public repo and navigate to that file
