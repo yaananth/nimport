@@ -2,10 +2,6 @@
 
 ## Use
 ```
-!pip install PyGithub
-!pip install websocket-client
-!pip install nbformat
-!pip install --index-url https://test.pypi.org/simple/ nimport==0.10 OR
 !pip install nimport
 %load_ext nimport
 ```
@@ -41,7 +37,7 @@
 
 ### Publish
 `pip install twine`
-`twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
+`twine upload dist/*`
 
 ### Test
 - Load [sample.ipynb](https://github.com/yaananth/nimport/blob/master/samples/sample.ipynb)
