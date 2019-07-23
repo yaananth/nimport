@@ -1,5 +1,5 @@
 from .provider import Provider
-from .constants import Contants
+from .constants import Constants
 from github import Github
 import requests
 import json
@@ -13,7 +13,7 @@ class GithubProvider(Provider):
         command = "git clone --depth=1 https://github.com/" + container + ".git"
         print(rmFolder)
         os.system(rmFolder)
-        
+
         print(command)
         os.system(command)
         return ""

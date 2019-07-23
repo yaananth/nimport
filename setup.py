@@ -14,5 +14,5 @@ setup(
     name=NAME,
     version=VERSION,
     install_requires=INSTALL_REQUIRES,
-    packages=find_packages()
+    packages=find_packages(exclude=['tests'])
 )
