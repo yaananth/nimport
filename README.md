@@ -40,7 +40,7 @@
     Needs `git` to be accessible
     ```
     %nimport container="yaananth/hack-sample-note2" path="one.ipynb" provider="github" providerOptions={"clone":"true"} navigate="trueOrAnythingHere"
-```
+    ```
 
 # Resources
 - https://packaging.python.org/guides/using-testpypi/
