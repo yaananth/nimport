@@ -1,13 +1,5 @@
 # Nimport
 
-## Package
-`pip install -r requirements.txt`
-`python setup.py sdist`
-
-## Publish
-`pip install twine`
-`twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
-
 ## Use
 ```
 !pip install PyGithub
@@ -41,6 +33,19 @@
     ```
     %nimport container="yaananth/hack-sample-note2" path="one.ipynb" provider="github" providerOptions={"clone":"true"} navigate="trueOrAnythingHere"
     ```
+
+## Develop
+
+### Package
+`pip install -r requirements.txt`
+`python setup.py sdist`
+
+### Publish
+`pip install twine`
+`twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
+
+### Test
+- Load [sample.ipynb](https://github.com/yaananth/nimport/blob/master/samples/sample.ipynb)
 
 # Resources
 - https://packaging.python.org/guides/using-testpypi/
