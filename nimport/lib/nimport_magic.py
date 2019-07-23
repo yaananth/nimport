@@ -2,13 +2,13 @@ from IPython.core.magic import magics_class, line_magic, Magics, Configurable
 from IPython.display import display, Javascript
 from IPython.lib import backgroundjobs as bg
 
-from nimport.lib.constants import Constants
-from nimport.lib.tokens import Tokens
-from nimport.providers.provider import Provider
-from nimport.providers.constants import Constants as ProviderConstants
-from nimport.lib.parser import Parser
-from nimport.providers.github import GithubProvider
-from nimport.lib.notebook import write, NoteBookUrl, ExtensionName
+from .constants import Constants
+from .tokens import Tokens
+from .parser import Parser
+from ..providers.provider import Provider
+from ..providers.constants import Constants as ProviderConstants
+from ..providers.github import GithubProvider
+from .notebook import write, NoteBookUrl, ExtensionName
 
 import logging
 import asyncio
