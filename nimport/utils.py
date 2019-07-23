@@ -1,17 +1,21 @@
 from IPython.display import display, Javascript
-import nbformat as nbf
+from urllib import parse
+import nbformat
 import json
 import os
-from urllib import parse
+import subprocess
+import shutil
 
 
-def open_nb(path, params=None, redirect=False):
-    '''edit papermill parameters and redirect to new notebook in same project'''
+def open_nb(path, params=None, redirect=True):
+    '''
+    edit papermill parameters and redirect to new notebook in same project
+    '''
     assert os.path.isfile(path)
     assert path.endswith('.ipynb')
     if params:
         # find parameter cell in notebook
-        nb = nbf.read(path, nbf.NO_CONVERT)
+        nb = nbformat.read(path, nbformat.NO_CONVERT)
         parameter_cells = [c for c in nb.cells if 'parameters' in c.get(
             'metadata', {}).get('tags', [])]
         pc = parameter_cells[0] if parameter_cells else None
@@ -19,16 +23,30 @@ def open_nb(path, params=None, redirect=False):
             # overwrite cell contents, write notebook
             lines = [k + '=' + json.dumps(v) for k, v in params.items()]
             pc['source'] = '\n'.join(lines)
-            nbf.write(nb, path)
+            nbformat.write(nb, path)
 
     # redirect
     if redirect:
+        # this sends a blob of javascript to be executed in the nteract window
         js = '''var o = window.location.href.split("/"); o[o.length - 1] = "''' + \
             path + '''"; window.location = o.join("/");'''
         display(Javascript(js))
 
+def clone_repo(git_url):
+    '''
+    clone a git repo, cleaning previous install
+    '''
+    assert git_url.endswith('.git')
+    import shutil
+    dirname = git_url.split('/')[-1].split('.')[0]
+    if os.path.isdir(dirname):
+        shutil.rmtree(dirname)
+    cmd = 'git clone --depth=1 ' + git_url
+    assert 0 == subprocess.check_output(cmd, shell=True)
+    assert os.path.isdir(dirname)
+    return os.path.abspath(dirname)
 
-def load_params(url):
+def parse_params(url):
     '''
     azure notebooks does not allow access to URL parameters.
     this is a cheap function to parse them when provided manually.
