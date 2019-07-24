@@ -48,7 +48,8 @@ class Nimportmagic(Magics, Configurable):
             providerResult = provider.get(
                 results[Tokens.Container], results[Tokens.Path], results[Tokens.ProviderOptions])
             self._result[_Result_Content] = providerResult
-            self.waitForParams(results, provider)
+            if Tokens.Navigate in results:
+                self.waitForParams(results, provider)
         else:
             display("Unknown provider: " + providerName)
 
@@ -79,11 +80,7 @@ class Nimportmagic(Magics, Configurable):
         if content:
             write(content, newNoteBookName)
         newUrl = notebookUrl.getNewLink(newNoteBookName)
-        if Tokens.Navigate in inputs:
-            display(Javascript(cls.getJSPostContent(newUrl)))
-        else:
-            display("Navigate to:")
-            display(newUrl)
+        display(Javascript(cls.getJSPostContent(newUrl)))
 
     @classmethod
     def getJSWsContent(cls, url):
