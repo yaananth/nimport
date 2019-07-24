@@ -11,8 +11,7 @@ import os
 
 class GithubProvider(Provider):
     def clone(self, container: str, path: str, options: dict):
-        repoName = "https://github.com/" + \
-            self.getContainerName(container) + ".git"
+        repoName = "https://github.com/" + container + ".git"
         clone_repo(repoName)
         return ""
 

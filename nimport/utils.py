@@ -67,6 +67,7 @@ def clone_repo(repo):
     if not repo:
         return
     assert repo.endswith('.git')
+    print("Cloning... " + repo)
     import shutil
     dirname = repo.split('/')[-1].split('.')[0]
     if os.path.isdir(dirname):

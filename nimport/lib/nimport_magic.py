@@ -40,7 +40,6 @@ class Nimportmagic(Magics, Configurable):
 
     @line_magic(Constants.MAGIC_NAME)
     def run(self, line):
-        display(line)
         results = Parser.parse(line)
         providerName = results[Tokens.Provider]
         provider = self._providers[providerName]
@@ -53,11 +52,11 @@ class Nimportmagic(Magics, Configurable):
             else:
                 print("Successful!")
         else:
-            display("Unknown provider: " + providerName)
+            print("Unknown provider: " + providerName)
 
     @classmethod
     def waitForParams(cls, inputs, provider):
-        display("Trying to get the current link...")
+        print("Asked to navigate, so trying to get the current link...")
         url = _WS_BaseUrl.format(cls.getRoomId())
         ws = websocket.create_connection(
             url, sslopt={"cert_reqs": ssl.CERT_NONE})
@@ -69,7 +68,7 @@ class Nimportmagic(Magics, Configurable):
 
     @classmethod
     def postContent(cls, inputs, provider):
-        display("Got link...making final adjustments")
+        print("Got link...making final adjustments...")
         content = cls._result[_Result_Content]
         url = cls._result[_Result_Url]
         newNoteBookName = inputs[Tokens.Path]
