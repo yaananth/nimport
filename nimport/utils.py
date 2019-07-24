@@ -90,6 +90,7 @@ def parse_params(url):
         rc = dict(parse.parse_qsl(components.query))
         rc['url'] = components.scheme + "://" + \
             components.netloc + components.path
+        rc['baseUrl'] = "/".join(rc['url'].split("/")[:-1])
     return rc
 
 
