@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 NAME = "nimport"
-VERSION = '0.10.5'
+VERSION = '0.10.6'
 
 INSTALL_REQUIRES = [
     'PyGithub',
