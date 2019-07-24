@@ -50,6 +50,8 @@ class Nimportmagic(Magics, Configurable):
             self._result[_Result_Content] = providerResult
             if Tokens.Navigate in results:
                 self.waitForParams(results, provider)
+            else:
+                print("Successful!")
         else:
             display("Unknown provider: " + providerName)
 

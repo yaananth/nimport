@@ -1,6 +1,7 @@
 from .provider import Provider
 from .constants import Constants
 from ..lib.parser import Parser
+from ..utils import clone_repo
 from github import Github
 import requests
 import json
@@ -10,13 +11,9 @@ import os
 
 class GithubProvider(Provider):
     def clone(self, container: str, path: str, options: dict):
-        rmFolder = "rm -rf " + self.getContainerName(container)
-        command = "git clone --depth=1 https://github.com/" + container + ".git"
-        print(rmFolder)
-        os.system(rmFolder)
-
-        print(command)
-        os.system(command)
+        repoName = "https://github.com/" + \
+            self.getContainerName(container) + ".git"
+        clone_repo(repoName)
         return ""
 
     # https://pygithub.readthedocs.io/en/latest/examples/Repository.html#get-a-specific-content-file
