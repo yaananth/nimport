@@ -39,6 +39,16 @@
     open_nb("pipeline-delays/delays.ipynb", params, redirect=True)
     ```
 
+- Get URL from browser into python (Javascript to python communication in nteract)
+    ```
+    clientData = {}
+    def callback(x):
+        global clientData
+        clientData = x
+    parse_client_data(callback)
+    print(clientData)
+    ```    
+
 ## Develop
 
 ### Package
