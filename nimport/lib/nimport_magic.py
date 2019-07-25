@@ -9,21 +9,17 @@ from ..providers.provider import Provider
 from ..providers.constants import Constants as ProviderConstants
 from ..providers.github import GithubProvider
 from .notebook import write, NoteBookUrl, ExtensionName
+from ..utils import parse_client_data
 
 import logging
 import asyncio
 import time
-import websocket
 import json
 from threading import Thread
-import random
-import ssl
-
 
 _MAGIC_NAME = "nimport"
-_WS_BaseUrl = "wss://connect.websocket.in/nimport?room_id={0}"
 _Result_Content = "content"
-_Result_Url = "url"
+_Result_Url = Constants.CLIENT_DATA_URL
 jobs = bg.BackgroundJobManager()
 
 
@@ -56,19 +52,18 @@ class Nimportmagic(Magics, Configurable):
 
     @classmethod
     def waitForParams(cls, inputs, provider):
-        print("Asked to navigate, so trying to get the current link...")
-        url = _WS_BaseUrl.format(cls.getRoomId())
-        ws = websocket.create_connection(
-            url, sslopt={"cert_reqs": ssl.CERT_NONE})
-        display(Javascript(cls.getJSWsContent(url)))
-        data = json.loads(ws.recv())
-        cls._result[_Result_Url] = data[_Result_Url]
-        ws.close()
-        cls.postContent(inputs, provider)
+        print("Asked to navigate, so trying to get the current client data...")
+
+        def callback(data):
+            print("Got client data...")
+            print(data)
+            cls._result[_Result_Url] = data[_Result_Url]
+            cls.postContent(inputs, provider)
+
+        parse_client_data(callback)
 
     @classmethod
     def postContent(cls, inputs, provider):
-        print("Got link...making final adjustments...")
         content = cls._result[_Result_Content]
         url = cls._result[_Result_Url]
         newNoteBookName = inputs[Tokens.Path]
@@ -81,20 +76,8 @@ class Nimportmagic(Magics, Configurable):
         if content:
             write(content, newNoteBookName)
         newUrl = notebookUrl.getNewLink(newNoteBookName)
+        print("Navigating to..." + newUrl)
         display(Javascript(cls.getJSPostContent(newUrl)))
-
-    @classmethod
-    def getJSWsContent(cls, url):
-        js = """
-        var websocket = new WebSocket("%s");
-
-        websocket.onopen = function (event) {
-            websocket.send(JSON.stringify({
-                url: window.location.href
-            }));
-        };
-        """ % (url)
-        return js
 
     @classmethod
     def getJSPostContent(cls, url):
@@ -104,7 +87,3 @@ class Nimportmagic(Magics, Configurable):
         }
         """ % (url)
         return js
-
-    @classmethod
-    def getRoomId(cls):
-        return random.randint(0, 99999999999999999999)

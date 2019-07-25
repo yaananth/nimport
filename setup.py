@@ -1,9 +1,10 @@
 from setuptools import setup, find_packages
 
 NAME = "nimport"
-VERSION = '0.10.14'
+VERSION = '0.10.15'
 
 INSTALL_REQUIRES = [
+    # Comment these while testing locally if using samples/sample.ipynb for faster devloop
     'PyGithub',
     'websocket-client',
     'IPython',

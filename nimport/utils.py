@@ -6,6 +6,13 @@ import os
 import subprocess
 import shutil
 import sys
+import websocket
+import random
+import ssl
+
+from .lib.constants import Constants
+
+_WS_BaseUrl = "wss://connect.websocket.in/nimport?room_id={0}"
 
 
 def open_nb(path, params=None, redirect=True):
@@ -98,3 +105,26 @@ def parse_params(url):
 def dump_params(params):
     lines = [k + ' = ' + json.dumps(v) for k, v in params.items()]
     return '\n'.join(lines)
+
+
+def parse_client_data(callback):
+    roomId = random.randint(0, 99999999999999999999)
+    url = _WS_BaseUrl.format(roomId)
+
+    def get_JS_WsContent(url):
+        return """
+            var websocket = new WebSocket("%s");
+
+            websocket.onopen = function (event) {
+                websocket.send(JSON.stringify({
+                    "%s": window.location.href
+                }));
+            };
+            """ % (url, Constants.CLIENT_DATA_URL)
+
+    ws = websocket.create_connection(
+        url, sslopt={"cert_reqs": ssl.CERT_NONE})
+    display(Javascript(get_JS_WsContent(url)))
+    data = json.loads(ws.recv())
+    ws.close()
+    callback(data)

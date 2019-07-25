@@ -1,5 +1,8 @@
 # Nimport
 
+## Requirements
+- Needs `git` to be installed for `github` provider to work
+
 ## Use
 ```
 !pip install --upgrade nimport

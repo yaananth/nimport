@@ -3,3 +3,8 @@ bin
 dist
 *.egg-info
 *.pyc
+
+*hack-sample-note2
+samples/one.ipynb
+
+.vscode
