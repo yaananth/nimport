@@ -52,12 +52,16 @@
 ## Develop
 
 ### Package
-`pip install -r requirements.txt`
-`python setup.py sdist`
+```bash
+pip install -r requirements.txt
+python setup.py sdist
+```
 
 ### Publish
-`pip install twine`
-`twine upload dist/*`
+```bash
+pip install twine
+twine upload dist/*
+```
 
 ### Test
 - Load [sample.ipynb](https://github.com/yaananth/nimport/blob/master/samples/sample.ipynb)
