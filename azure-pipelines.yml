@@ -40,6 +40,7 @@ steps:
   
 - script: |
     cat $(PYPIRC_PATH)
+    dir($(Build.SourcesDirectory))
   displayName: 'Verify'
 
 - script: |
