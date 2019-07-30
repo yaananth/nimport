@@ -6,7 +6,7 @@ class Parser(object):
     """Parser input like - container="$container" path="$path" source="$source"
      into [$container, $path, $source]"""
     @classmethod
-    def parse(self, line: str):
+    def parse(self, line):
         result = {}
         # splits by spaces
         options = line.split()
@@ -31,7 +31,7 @@ class Parser(object):
         return result
 
     @classmethod
-    def normalize(self, data: str):
+    def normalize(self, data):
         data = data.replace('"', '')
         data = data.replace("'", '')
         return data

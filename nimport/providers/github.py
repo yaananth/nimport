@@ -10,13 +10,13 @@ import os
 
 
 class GithubProvider(Provider):
-    def clone(self, container: str, path: str, options: dict):
+    def clone(self, container, path, options):
         repoName = "https://github.com/" + container + ".git"
         clone_repo(repoName)
         return ""
 
     # https://pygithub.readthedocs.io/en/latest/examples/Repository.html#get-a-specific-content-file
-    def getFile(self, container: str, path: str, options: dict):
+    def getFile(self, container, path, options):
         if Constants.OptionsToken in options:
             token = Parser.normalize(options[Constants.OptionsToken])
             # Authorized
@@ -30,5 +30,5 @@ class GithubProvider(Provider):
         response = requests.get(result.raw_data["download_url"])
         return response.json()
 
-    def getContainerName(self, container: str):
+    def getContainerName(self, container):
         return container.split("/")[-1]

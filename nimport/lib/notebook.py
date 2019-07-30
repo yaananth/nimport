@@ -5,7 +5,7 @@ from IPython.display import display
 ExtensionName = '.ipynb'
 
 
-def write(content: str, name: str):
+def write(content, name):
     notebookname = name
     display("Creating/updating file.." + notebookname)
     with open(notebookname, 'w') as outfile:
@@ -13,12 +13,12 @@ def write(content: str, name: str):
 
 
 class NoteBookUrl(object):
-    _url: str
+    _url
     _urlParsed: ParseResult
-    _name: str
+    _name
 
     @classmethod
-    def __init__(self, url: str):
+    def __init__(self, url):
         self._url = url
         self.parse()
 
@@ -32,7 +32,7 @@ class NoteBookUrl(object):
         return self._name
 
     @classmethod
-    def getNewLink(self, newName: str):
+    def getNewLink(self, newName):
         existing = self._urlParsed
         existingPath = existing.path.split('/')[:-1]
         existingPath.append(newName)
