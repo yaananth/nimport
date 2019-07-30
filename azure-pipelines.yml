@@ -43,5 +43,5 @@ steps:
   displayName: 'Verify'
 
 - script: |
-    twine upload nimport --config-file $(PYPIRC_PATH) "$(Build.StagingDirectory)/*"
+    twine upload -r nimport --config-file $(PYPIRC_PATH) $(Build.StagingDirectory)/*
   displayName: 'Upload'
