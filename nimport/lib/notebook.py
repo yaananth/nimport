@@ -14,7 +14,7 @@ def write(content, name):
 
 class NoteBookUrl(object):
     _url
-    _urlParsed: ParseResult
+    _urlParsed
     _name
 
     @classmethod
