@@ -35,14 +35,13 @@ steps:
   displayName: 'Authenticate' 
   
 - script: |
-    python setup.py sdist
+    python setup.py sdist --dist-dir $(Build.StagingDirectory)
   displayName: 'Package'
   
 - script: |
     cat $(PYPIRC_PATH)
-    dir($(Build.SourcesDirectory))
   displayName: 'Verify'
 
 - script: |
-    twine upload nimport --config-file $(PYPIRC_PATH) $(Build.SourcesDirectory)
+    twine upload nimport --config-file $(PYPIRC_PATH) $(Build.StagingDirectory)
   displayName: 'Upload'
