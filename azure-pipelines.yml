@@ -39,5 +39,9 @@ steps:
   displayName: 'Package'
   
 - script: |
-    twine upload -r pip_twine --config-file $(PYPIRC_PATH) $(Build.SourcesDirectory)
+    cat $(PYPIRC_PATH)
+  displayName: 'Verify'
+
+- script: |
+    twine upload pip_twine --config-file $(PYPIRC_PATH) $(Build.SourcesDirectory)
   displayName: 'Upload'
