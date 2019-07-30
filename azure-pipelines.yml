@@ -39,5 +39,5 @@ steps:
   displayName: 'Package'
   
 - script: |
-    twine upload -r pip_twine $(Build.SourcesDirectory)
+    twine upload -r pip_twine --config-file $(PYPIRC_PATH) $(Build.SourcesDirectory)
   displayName: 'Upload'
