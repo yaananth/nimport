@@ -13,10 +13,6 @@ def write(content, name):
 
 
 class NoteBookUrl(object):
-    _url
-    _urlParsed
-    _name
-
     @classmethod
     def __init__(self, url):
         self._url = url

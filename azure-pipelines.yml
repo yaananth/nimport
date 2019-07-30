@@ -31,4 +31,17 @@ steps:
 - script: |
     pip install pytest pytest-azurepipelines
     pytest
-  displayName: 'pytest'
+  displayName: 'Test'
+  
+- task: TwineAuthenticate@0
+  inputs:
+    externalFeeds: 'pip_twine' 
+  displayName: 'Authenticate' 
+  
+- script: |
+    python setup.py sdist
+  displayName: 'Package'
+  
+- script: |
+    twine upload -r pip_twine $(Build.SourcesDirectory)
+  displayName: 'Upload'
