@@ -30,8 +30,6 @@ class Nimportmagic(Magics, Configurable):
     githubProvider = GithubProvider()
     _providers[ProviderConstants.GitHub] = githubProvider
 
-    _gotMessage: bool = False
-
     _result = {}
 
     @line_magic(Constants.MAGIC_NAME)
