@@ -53,10 +53,12 @@
 
 ### Package
 `pip install -r requirements.txt`
+
 `python setup.py sdist`
 
 ### Publish
 `pip install twine`
+
 `twine upload dist/*`
 
 ### Test

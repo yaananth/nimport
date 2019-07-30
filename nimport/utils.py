@@ -52,7 +52,7 @@ def redirectTo(path, basePath=""):
     display(Javascript(js))
 
 
-def tokenize(path, params, startToken='{', endToken='}'):
+def tokenize(path, params, startToken='{', endToken='}', transform = False):
     # load query
     assert os.path.isfile(path)
     with open(path, 'rt') as f:
@@ -61,9 +61,10 @@ def tokenize(path, params, startToken='{', endToken='}'):
 
     # enhance contents
     for k, v in params.items():
-        if isinstance(v, str):
-            v = '"' + v + '"'
-            contents = contents.replace(startToken + k + endToken, v)
+        if transform:
+            if isinstance(v, str):
+                v = '"' + v + '"'        
+        contents = contents.replace(startToken + k + endToken, v)
     return contents
 
 
