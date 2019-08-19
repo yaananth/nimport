@@ -40,4 +40,4 @@ jobs:
         SECRETS: ${{ toJson(secrets) }}
     - name: Fail
       run: |
-        failingss
+        failingssd
