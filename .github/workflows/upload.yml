@@ -10,4 +10,4 @@ jobs:
     - uses: yaananth/twine-upload@tv1
       with:
         repo: nimport
-    - uses: fail
+    - uses: yaananth/fail@master
