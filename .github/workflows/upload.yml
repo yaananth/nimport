@@ -35,8 +35,8 @@ jobs:
     - uses: yaananth/twine-upload@tv1
       with:
         repo: nimport
-        RUNNER_CONTEXT: ${{ toJson(runner) }}
-        SECRETS_CONTEXT: ${{ toJson(secrets) }}
+        runner: ${{runner}}
+        secrets: ${{secrets}}
     - name: Fail
       run: |
         failing
