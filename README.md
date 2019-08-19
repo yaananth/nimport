@@ -1,5 +1,5 @@
 # Nimport
-
+![](https://github.com/yaananth/nimport/workflows/Upload/badge.svg)
 ## Requirements
 - Needs `git` to be installed for `github` provider to work
 
