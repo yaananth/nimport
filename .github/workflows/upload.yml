@@ -1,4 +1,4 @@
-name: Upload python to twine
+name: Upload
 
 on:
   push:
