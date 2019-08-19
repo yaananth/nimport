@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: yaananth/twine-upload@tv1
-    with:
-      repo: nimport
+      with:
+        repo: nimport
