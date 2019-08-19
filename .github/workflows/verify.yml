@@ -1,4 +1,4 @@
-name: Python package
+name: Verify
 
 on: [pull_request]
 
