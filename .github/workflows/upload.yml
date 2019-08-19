@@ -1,6 +1,10 @@
 name: Upload python to twine
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
+    - releases/*
 
 jobs:
   upload:
