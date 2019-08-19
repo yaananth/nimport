@@ -1,5 +1,4 @@
 # Nimport
-[![Build Status](https://yaananth.visualstudio.com/nimport/_apis/build/status/yaananth.nimport?branchName=master)](https://yaananth.visualstudio.com/nimport/_build/latest?definitionId=61&branchName=master)
 
 ## Requirements
 - Needs `git` to be installed for `github` provider to work
