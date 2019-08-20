@@ -9,6 +9,7 @@ import sys
 import websocket
 import random
 import ssl
+import datetime
 
 from .lib.constants import Constants
 
@@ -70,21 +71,39 @@ def tokenize(path, params, startToken='{', endToken='}', transform = False):
 
 def clone_repo(repo):
     '''
-    clone a git repo, cleaning previous install
+    updates a git repo, cleaning previous install if needed
     '''
     if not repo:
         return
-    assert repo.endswith('.git')
-    print("Cloning... " + repo)
-    import shutil
+    
+    assert repo.endswith('.git'), repo + ' is not a git repo'
+    start = datetime.datetime.now()
     dirname = repo.split('/')[-1].split('.')[0]
-    if os.path.isdir(dirname):
-        shutil.rmtree(dirname)
-    cmd = 'git clone --depth=1 ' + repo
-    subprocess.call(cmd, shell=True)
+    origin = os.getcwd()
+    if os.path.isdir(os.path.join(dirname, '.git')):
+        # pull master
+        cmd = ' && '.join((
+                'cd ' + dirname,
+                'git reset --hard', 
+                'git clean -xdf', 
+                'git checkout master', 
+                'git pull'))
+    else:
+        # clone
+        start = datetime.datetime.now()
+        if os.path.isdir(dirname):
+            shutil.rmtree(dirname)
+        cmd = 'git clone ' + repo
+   
+    print(cmd)
+    rc = subprocess.call(cmd, shell=True)
+    assert 0 == rc, 'something failed!'
+    print('Finished in', datetime.datetime.now() - start)
+
     assert os.path.isdir(dirname)
     if dirname not in sys.path:
         sys.path.append(dirname)
+    os.chdir(origin)
     return os.path.abspath(dirname)
 
 
