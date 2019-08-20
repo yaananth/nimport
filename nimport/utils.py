@@ -90,7 +90,6 @@ def clone_repo(repo):
                 'git pull'))
     else:
         # clone
-        start = datetime.datetime.now()
         if os.path.isdir(dirname):
             shutil.rmtree(dirname)
         cmd = 'git clone ' + repo
@@ -98,12 +97,11 @@ def clone_repo(repo):
     print(cmd)
     rc = subprocess.call(cmd, shell=True)
     assert 0 == rc, 'something failed!'
-    print('Finished in', datetime.datetime.now() - start)
-
     assert os.path.isdir(dirname)
     if dirname not in sys.path:
         sys.path.append(dirname)
     os.chdir(origin)
+    print('Finished in', datetime.datetime.now() - start)
     return os.path.abspath(dirname)
 
 
