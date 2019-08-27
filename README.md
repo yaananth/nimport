@@ -1,5 +1,7 @@
 # Nimport
 ![](https://github.com/yaananth/nimport/workflows/Upload/badge.svg)
+
+uses github action [twine-upload](https://github.com/marketplace/actions/twine-upload)
 ## Requirements
 - Needs `git` to be installed for `github` provider to work
 
