@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: yaananth/twine-upload@v1
+    - uses: yaananth/twine-upload@v2
       env:
         RUNNER: ${{ toJson(runner) }}
         SECRETS: ${{ toJson(secrets) }}
