@@ -13,7 +13,7 @@ import datetime
 
 from .lib.constants import Constants
 
-_WS_BaseUrl = "wss://connect.websocket.in/nimport?room_id={0}"
+_WS_BaseUrl = "wss://connect.websocket.in/v2/nimport?room_id={0}"
 
 
 def open_nb(path, params=None, redirect=True):
