@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 NAME = "nimport"
-VERSION = '0.10.19'
+VERSION = '0.10.20'
 
 INSTALL_REQUIRES = [
     # Comment these while testing locally if using samples/sample.ipynb for faster devloop
